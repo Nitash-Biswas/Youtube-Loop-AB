@@ -1,0 +1,33 @@
+/* Container styles */
+#ab-loop-controls {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  z-index: 999999;
+  background: rgba(0, 0, 0, 0.85);
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  display: flex;
+  gap: 10px;
+}
+
+/* Button styles */
+.ab-loop-button {
+  background-color: #ff0000;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: opacity 0.2s, background-color 0.2s;
+}
+
+.ab-loop-button.green {
+  background-color: #32a729;
+}
+
+.ab-loop-button:hover {
+  opacity: 0.8;
+}

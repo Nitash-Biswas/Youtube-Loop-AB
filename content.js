@@ -28,33 +28,17 @@ function formatTime(seconds) {
 
 // Utility to create a styled button
 function createButton(text, onClick) {
-    const button = document.createElement("button");
-    button.textContent = text;
-    button.style =
-      "background-color: #FF0000; color: white; border: none; padding: 10px; border-radius: 5px; cursor: pointer; font-size: 14px; transition: background-color 0.2s;";
+  const button = document.createElement("button");
+  button.textContent = text;
+  button.classList.add("ab-loop-button");
 
-    button.addEventListener("mouseenter", () => {
-      button.style.backgroundColor = "#cc0000";
-    });
+  button.addEventListener("click", (e) => {
+    e.stopPropagation(); // Prevents event bubbling
+    onClick();
+  });
 
-    button.addEventListener("mouseleave", () => {
-      if (text.includes("A") && timeA === null) {
-        button.style.backgroundColor = "#FF0000";
-      } else if (text.includes("B") && timeB === null) {
-        button.style.backgroundColor = "#FF0000";
-      } else if (text.includes("Clear")) {
-        button.style.backgroundColor = "#FF0000"; // ensures Clear stays red
-      }
-    });
-
-    button.addEventListener("click", (e)=>{
-        e.stopPropagation(); // Prevents event bubbling
-        onClick();
-    });
-
-    return button;
-  }
-
+  return button;
+}
 
 // Add custom controls to the YouTube page
 function injectControls() {
@@ -65,16 +49,6 @@ function injectControls() {
   // Container for the buttons
   const container = document.createElement("div");
   container.id = "ab-loop-controls";
-  container.style.position = "absolute";
-  container.style.top = "20px";
-  container.style.left = "20px";
-  container.style.zIndex = "999999";
-  container.style.background = "rgba(0, 0, 0, 0.85)";
-  container.style.padding = "10px";
-  container.style.borderRadius = "8px";
-  container.style.boxShadow = "0 0 10px rgba(0,0,0,0.5)";
-  container.style.display = "flex";
-  container.style.gap = "10px";
 
   const video = document.querySelector("video");
 
@@ -83,13 +57,13 @@ function injectControls() {
     if (timeA !== null) {
       timeA = null;
       btnA.textContent = "Set A";
-      btnA.style.backgroundColor = "#FF0000";
+      btnA.classList.remove("green");
       return;
     }
 
     timeA = video.currentTime;
     btnA.textContent = `Set A : (${formatTime(timeA)})`;
-    btnA.style.backgroundColor = "#32a729";
+    btnA.classList.add("green");
   });
 
   // --- Set B ---
@@ -99,7 +73,7 @@ function injectControls() {
     if (timeB !== null) {
       timeB = null;
       btnB.textContent = "Set B";
-      btnB.style.backgroundColor = "#FF0000";
+      btnB.classList.remove("green");
       stopLoop();
       return;
     }
@@ -111,7 +85,7 @@ function injectControls() {
 
     timeB = tentativeB;
     btnB.textContent = `Set B : (${formatTime(timeB)})`;
-    btnB.style.backgroundColor = "#32a729";
+    btnB.classList.add("green");
 
     startLoop();
   });
@@ -123,14 +97,14 @@ function injectControls() {
     timeB = null;
 
     btnA.textContent = "Set A";
-    btnA.style.backgroundColor = "#FF0000";
+    btnA.classList.remove("green");
 
     btnB.textContent = "Set B";
-    btnB.style.backgroundColor = "#FF0000";
+    btnB.classList.remove("green");
   });
 
-   // -- Go to A when key "Q" is pressed --
-   document.addEventListener("keydown", (e) => {
+  // -- Go to A when key "Q" is pressed --
+  document.addEventListener("keydown", (e) => {
     if (e.key === "q" || e.key === "Q") {
       if (timeA !== null) {
         video.currentTime = timeA;
