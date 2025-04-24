@@ -1,7 +1,23 @@
-# Youtube-Loop-AB 🔁
+# 🎬 Youtube-Loop-AB 🔁
 
-## A Chrome Extension that lets you **loop between two timestamps** on YouTube!  
+## A Chrome Extension that lets you **loop between two timestamps** on YouTube! 🎵🌀  
 Tired of dragging the scrubber back again and again? Let this extension do the looping for you! 🙌
+
+---
+
+### 🛠️ Installation
+
+Wanna get looping? Here's how to install the extension manually:
+
+1. 📦 Clone or download this repository.
+2. 🧭 Go to `chrome://extensions/` in your Chrome browser.
+3. 🔛 Enable **Developer mode** (top right).
+4. 📂 Click **Load unpacked** and select the folder where you saved this repo.
+5. 🎉 Done! You should now see the extension in your toolbar.
+
+> 💡 Tip: Pin the extension so you can access it easily while jamming!
+
+---
 
 ### 🎯 How to use:
 - ▶️ Open a YouTube video.
@@ -25,4 +41,7 @@ Wouldn’t it be better if the video just **looped that part automatically**?
 Boom 💥 — that's where **Youtube-Loop-AB** comes in!
 
 ![Screenshot 2025-04-24 at 2 36 14 PM](https://github.com/user-attachments/assets/6c816c56-accd-4d58-95e5-f912aca16f56)
+
+---
+
 
