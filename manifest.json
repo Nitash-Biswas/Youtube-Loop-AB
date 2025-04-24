@@ -1,0 +1,18 @@
+{
+  "manifest_version": 3,
+  "name": "YouTube Loop AB",
+  "version": "1.0",
+  "description": "Loops between two timestamps on YouTube. Instructions: 1. Open a YouTube video. 2. Click the extension icon. 3. Click on 'Set A' and 'Set B' at desired timestamps to set the loop. 4. Press 'Q' to go to timestamp A. 5. Press 'Clear' to clear the loop.",
+  "permissions": ["scripting", "activeTab"],
+  "content_scripts": [
+    {
+      "matches": ["https://www.youtube.com/*"],
+      "js": ["content.js"]
+    }
+  ],
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
+}
