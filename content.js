@@ -127,7 +127,7 @@ function startLoop() {
     clearInterval(interval);
     interval = setInterval(() => {
       const video = document.querySelector("video");
-      if (video.currentTime >= timeB) {
+      if (video.currentTime >= timeB || video.currentTime < timeA) {
         video.currentTime = timeA;
       }
     }, 500);
