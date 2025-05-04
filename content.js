@@ -5,9 +5,6 @@ let interval = null;
 
 console.log("YouTube AB Loop Extension Loaded");
 
-// Look for YouTube video container
-const videoContainer = document.querySelector(".html5-video-container");
-
 // Format time as SS, MM:SS, or HH:MM:SS depending on duration
 function formatTime(seconds) {
   const hrs = Math.floor(seconds / 3600);
@@ -45,6 +42,10 @@ function injectControls() {
   // Prevent injecting controls multiple times
   const existing = document.getElementById("ab-loop-controls");
   if (existing) return;
+
+  // Look for YouTube video container
+  const videoContainer = document.querySelector(".html5-video-container");
+  if (!videoContainer) return;
 
   // Container for the buttons
   const container = document.createElement("div");
@@ -139,5 +140,14 @@ function stopLoop() {
   clearInterval(interval);
 }
 
-// Inject controls when ready
-injectControls();
+// Observe DOM changes to detect when the video container is available
+const observer = new MutationObserver(() => {
+  const videoContainer = document.querySelector(".html5-video-container");
+  if (videoContainer) {
+    injectControls();
+    observer.disconnect(); // Stop observing once the container is found
+  }
+});
+
+// Start observing the body for changes
+observer.observe(document.body, { childList: true, subtree: true });
